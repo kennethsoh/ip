@@ -108,8 +108,8 @@ public class Duck {
                     String[] firstPart = parts[0].split("event ", 2);
                     String description = firstPart.length > 1 ? firstPart[1] : "";
                     String from = parts.length > 1 ? parts[1] : "";
-                    String to = parts.length > 2 ?  parts[2] : "";
-                    if (description.isBlank() || from.isBlank() || to.isBlank()){
+                    String to = parts.length > 2 ? parts[2] : "";
+                    if (description.isBlank() || from.isBlank() || to.isBlank()) {
                         throw new EmptyDetailsException("No description or 'from' or 'to' time provided");
                     }
                     Task task = new Event(description, from, to);
@@ -124,7 +124,24 @@ public class Duck {
                     System.out.println(e.getMessage());
                     System.out.println("_________________________________________________");
                 }
-
+            } else if (userInput.startsWith("delete")) {
+                try {
+                    String[] input = userInput.split(" ");
+                    int number = Integer.parseInt(input[1]);
+                    if (number <= 0 || number > list.size()) {
+                        throw new IndexOutOfBoundsException("Task number out of range.");
+                    }
+                    Task task = list.remove(number - 1);
+                    System.out.println("_________________________________________________");
+                    System.out.println("Noted I've removed this task:");
+                    System.out.println("     " + task.toString());
+                    System.out.println("Now you have " + list.size() + " tasks in the list.");
+                    System.out.println("_________________________________________________");
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("_________________________________________________");
+                    System.out.println(e.getMessage());
+                    System.out.println("_________________________________________________");
+                }
             } else {
                 try {
                     throw new UnknownCommandException("Invalid Command");
