@@ -2,9 +2,9 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
+    public Task(Boolean isDone, String description) {
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     public void mark() {
@@ -17,6 +17,10 @@ public class Task {
 
     public String getDescription() {
         return this.description;
+    }
+
+    public Boolean isDone() {
+        return this.isDone;
     }
 
     public String getStatusIcon() {
