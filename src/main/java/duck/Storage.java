@@ -15,9 +15,9 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public void save(String filePath, ArrayList<Task> list) {
+    public void save(String filePath, TaskList list) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (Task task : list) {
+            for (Task task : list.getAllTasks()) {
                 writer.write(taskToString(task));
                 writer.newLine();
             }
