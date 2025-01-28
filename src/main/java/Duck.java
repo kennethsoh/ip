@@ -142,7 +142,12 @@ public class Duck {
             System.out.println("_________________________________________________");
             System.out.println(e.getMessage());
             System.out.println("_________________________________________________");
+        } catch (Exception e) {
+            System.out.println("_________________________________________________");
+            System.out.println("Invalid date format! Use yyyy-MM-dd HHmm (e.g., 2025-01-27 2359).");
+            System.out.println("_________________________________________________");
         }
+
     }
     public static void event(String userInput, ArrayList<Task> list) {
         try {
@@ -164,6 +169,10 @@ public class Duck {
         } catch (EmptyDetailsException e) {
             System.out.println("_________________________________________________");
             System.out.println(e.getMessage());
+            System.out.println("_________________________________________________");
+        } catch (Exception e) {
+            System.out.println("_________________________________________________");
+            System.out.println("Invalid date format! Use yyyy-MM-dd HHmm (e.g., 2025-01-27 2359).");
             System.out.println("_________________________________________________");
         }
     }
