@@ -25,6 +25,16 @@ public class TaskList {
         this.tasks.add(t);
     }
 
+    public TaskList find(String keyword) {
+        TaskList matchingList = new TaskList(new ArrayList<>());
+        for (Task task : this.tasks) {
+            if (keyword.equalsIgnoreCase(task.getDescription())) {
+                matchingList.add(task);
+            }
+        }
+        return matchingList;
+    }
+
     public Task remove(int i) {
         return this.tasks.remove(i);
     }

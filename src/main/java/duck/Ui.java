@@ -51,6 +51,28 @@ public class Ui {
         System.out.println("_________________________________________________");
     }
 
+    public void removeTaskMessage(Task t, TaskList list) {
+        System.out.println("_________________________________________________");
+        System.out.println("Noted I've removed this task:");
+        System.out.println("     " + t.toString());
+        System.out.println("Now you have " + list.size() + " tasks in the list.");
+        System.out.println("_________________________________________________");
+    }
+
+    public void findMessage(TaskList list) {
+        System.out.println("_________________________________________________");
+        if (list.size() < 1) {
+            System.out.println("There are no matching tasks in your list:");
+            System.out.println("_________________________________________________");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println("     " + (i + 1) + "."+ list.get(i).toString());
+            }
+            System.out.println("_________________________________________________");
+        }
+    }
+
     public void showCommandErrorMessage() {
         System.out.println("_________________________________________________");
         System.out.println("Enter a 'todo', 'deadline' or 'event' task, or 'mark' or 'unmark' action");
