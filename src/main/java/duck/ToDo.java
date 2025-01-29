@@ -1,7 +1,7 @@
 package duck;
 public class ToDo extends Task {
-    public ToDo (Boolean isDone, String Description) {
-        super(isDone, Description);
+    public ToDo(Boolean isDone, String description) {
+        super(isDone, description);
     }
 
     @Override

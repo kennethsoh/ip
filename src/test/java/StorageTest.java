@@ -1,13 +1,15 @@
-import duck.ToDo;
-import duck.Task;
-import duck.TaskList;
-import duck.Storage;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;;
+import org.junit.jupiter.api.Test;
+
+import duck.Storage;
+import duck.Task;
+import duck.TaskList;
+import duck.ToDo;
+
 
 public class StorageTest {
     @Test
