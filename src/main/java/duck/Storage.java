@@ -9,12 +9,27 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Handles saving and loading tasks from a file.
+ */
 public class Storage {
     protected String filePath;
+
+    /**
+     * Constructs a Storage instance with the specified file path.
+     *
+     * @param filePath The path of the file where tasks are stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves the task list to a file.
+     *
+     * @param filePath The file path to save the tasks.
+     * @param list The list of tasks to save.
+     */
     public void save(String filePath, TaskList list) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             for (Task task : list.getAllTasks()) {
@@ -27,6 +42,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from the storage file.
+     *
+     * @return A list of tasks retrieved from the file.
+     * @throws IOException If an error occurs while reading the file.
+     */
     public ArrayList<Task> load() throws IOException {
         ArrayList<Task> list = new ArrayList<Task>();
         File saveFile = new File(this.filePath);
@@ -62,6 +83,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Converts a task to a formatted string for storage.
+     *
+     * @param task The task to convert.
+     * @return The formatted string representing the task.
+     */
     private static String taskToString(Task task) {
         DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         if (task instanceof ToDo) {

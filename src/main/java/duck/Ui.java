@@ -2,16 +2,32 @@ package duck;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles user interactions, including reading input and displaying messages.
+ */
 public class Ui {
 
     private final Scanner scanner;
 
+    /**
+     * Constructs a Ui instance and initializes the Scanner for user input.
+     */
     public Ui() {
         scanner = new Scanner(System.in);
     }
+
+    /**
+     * Reads the next command entered by the user.
+     *
+     * @return The user input as a String.
+     */
     public String readCommand() {
         return scanner.nextLine();
     }
+
+    /**
+     * Displays the welcome message to the user.
+     */
     public void showWelcome() {
         System.out.println("_________________________________________________");
         System.out.println("Hello! I'm DUCK");
@@ -20,6 +36,11 @@ public class Ui {
         System.out.println("_________________________________________________");
     }
 
+    /**
+     * Displays the list of tasks.
+     *
+     * @param list The task list to be displayed.
+     */
     public void showList(TaskList list) {
         System.out.println("_________________________________________________");
         System.out.println("Here are the tasks in your list:");
@@ -29,6 +50,11 @@ public class Ui {
         System.out.println("_________________________________________________");
     }
 
+    /**
+     * Displays a message indicating a task has been marked as completed.
+     *
+     * @param t The task that was marked as completed.
+     */
     public void mark(Task t) {
         System.out.println("_________________________________________________");
         System.out.println("Nice! I've marked this task as done:");
@@ -36,6 +62,11 @@ public class Ui {
         System.out.println("_________________________________________________");
     }
 
+    /**
+     * Displays a message indicating a task has been marked as not completed.
+     *
+     * @param t The task that was unmarked.
+     */
     public void unmark(Task t) {
         System.out.println("_________________________________________________");
         System.out.println("OK, I've marked this task as not done yet:");
@@ -43,6 +74,12 @@ public class Ui {
         System.out.println("_________________________________________________");
     }
 
+    /**
+     * Displays a message confirming a task has been added to the list.
+     *
+     * @param t The task that was added.
+     * @param list The task list where the task was added.
+     */
     public void addTaskMessage(Task t, TaskList list) {
         System.out.println("_________________________________________________");
         System.out.println("Got it. I've added this task:");
@@ -51,12 +88,20 @@ public class Ui {
         System.out.println("_________________________________________________");
     }
 
+    /**
+     * Displays an error message for unrecognized commands.
+     */
     public void showCommandErrorMessage() {
         System.out.println("_________________________________________________");
         System.out.println("Enter a 'todo', 'deadline' or 'event' task, or 'mark' or 'unmark' action");
         System.out.println("_________________________________________________");
     }
 
+    /**
+     * Displays an error message.
+     *
+     * @param m The error message to be displayed.
+     */
     public void showErrorMessage(String m) {
         System.out.println("_________________________________________________");
         System.out.println(m);
@@ -64,6 +109,9 @@ public class Ui {
 
     }
 
+    /**
+     * Displays a goodbye message to the user.
+     */
     public void showByeMessage() {
         System.out.println("     Bye. Hope to see you again soon!");
         System.out.println("_________________________________________________");
