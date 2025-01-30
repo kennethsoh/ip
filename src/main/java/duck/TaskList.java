@@ -55,6 +55,23 @@ public class TaskList {
     }
 
     /**
+     * Finds task(s) in the list
+     *
+     * @param keyword The description of the task(s) to find.
+     * @return List of matching tasks.
+     */
+    public TaskList find(String keyword) {
+        TaskList matchingList = new TaskList(new ArrayList<>());
+        for (Task task : this.tasks) {
+            if (keyword.equalsIgnoreCase(task.getDescription())) {
+                matchingList.add(task);
+            }
+        }
+        return matchingList;
+    }
+
+
+    /**
      * Removes a task from the list.
      *
      * @param i The index of the task to remove.

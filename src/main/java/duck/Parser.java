@@ -53,7 +53,6 @@ public class Parser {
         default:
             unknown(ui);
         }
-
     }
 
     /**
@@ -210,11 +209,7 @@ public class Parser {
                 throw new IndexOutOfBoundsException("Task number out of range.");
             }
             Task task = list.remove(number - 1);
-            System.out.println("_________________________________________________");
-            System.out.println("Noted I've removed this task:");
-            System.out.println("     " + task.toString());
-            System.out.println("Now you have " + list.size() + " tasks in the list.");
-            System.out.println("_________________________________________________");
+            ui.removeTaskMessage(task, list);
         } catch (IndexOutOfBoundsException e) {
             ui.showErrorMessage(e.getMessage());
         }
@@ -225,6 +220,21 @@ public class Parser {
      *
      * @param ui The UI instance to display the message.
      */
+    public void find(String userInput, TaskList list, Ui ui) {
+        // TODO
+        try {
+            String[] input = userInput.split(" ");
+            String keyword = input.length > 1 ? input[1] : "";
+            if (keyword.isBlank()) {
+                throw new EmptyDetailsException("No keyword provided");
+            }
+            TaskList match = list.find(keyword);
+            ui.findMessage(match);
+        } catch (Exception e) {
+            ui.showErrorMessage(e.getMessage());
+        }
+    }
+
     public void bye(Ui ui) {
         ui.showByeMessage();
     }
