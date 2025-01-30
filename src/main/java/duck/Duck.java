@@ -1,9 +1,9 @@
 package duck;
+
+import java.io.IOException;
+
 import duck.exception.EmptyDetailsException;
 import duck.exception.UnknownCommandException;
-import java.util.Scanner;
-import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * The main class for the DUCK task manager application.

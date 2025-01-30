@@ -1,12 +1,12 @@
 package duck;
-import java.io.File;
 import java.util.ArrayList;
 
 /**
  * Manages a list of tasks.
  */
 public class TaskList {
-    ArrayList<Task> tasks;
+
+    private ArrayList<Task> tasks;
 
     /**
      * Constructs a TaskList with an initial list of tasks.

@@ -65,6 +65,6 @@ public class Task {
      * @return The formatted task string.
      */
     public String toString() {
-        return "["+this.getStatusIcon()+"] "+this.getDescription();
+        return "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
 }

@@ -1,10 +1,12 @@
-import duck.Task;
-import duck.TaskList;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import duck.Task;
+import duck.TaskList;
+
 public class TaskListTest {
 
     @Test

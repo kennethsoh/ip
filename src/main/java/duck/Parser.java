@@ -3,8 +3,6 @@ package duck;
 import duck.exception.EmptyDetailsException;
 import duck.exception.UnknownCommandException;
 
-import java.util.ArrayList;
-
 /**
  * Parses user input and executes the corresponding command.
  */
@@ -28,32 +26,32 @@ public class Parser {
         String[] parts = input.split(" ", 2);
         String command = parts[0].toLowerCase();
         switch (command) {
-            case "list":
-                list(list, ui);
-                break;
-            case "mark":
-                mark(input, list, ui);
-                break;
-            case "unmark":
-                unmark(input, list, ui);
-                break;
-            case "todo":
-                toDo(input, list, ui);
-                break;
-            case "deadline":
-                deadline(input, list, ui);
-                break;
-            case "event":
-                event(input, list, ui);
-                break;
-            case "delete":
-                delete(input, list, ui);
-                break;
-            case "bye":
-                bye(ui);
-                break;
-            default:
-                 unknown(ui);
+        case "list":
+            list(list, ui);
+            break;
+        case "mark":
+            mark(input, list, ui);
+            break;
+        case "unmark":
+            unmark(input, list, ui);
+            break;
+        case "todo":
+            toDo(input, list, ui);
+            break;
+        case "deadline":
+            deadline(input, list, ui);
+            break;
+        case "event":
+            event(input, list, ui);
+            break;
+        case "delete":
+            delete(input, list, ui);
+            break;
+        case "bye":
+            bye(ui);
+            break;
+        default:
+            unknown(ui);
         }
 
     }
@@ -75,7 +73,7 @@ public class Parser {
      * @param list The task list containing the task.
      * @param ui The UI instance to display feedback.
      */
-    public void mark(String userInput, TaskList list, Ui ui){
+    public void mark(String userInput, TaskList list, Ui ui) {
         try {
             String[] input = userInput.split(" ");
             int number = Integer.parseInt(input[1]);
@@ -99,7 +97,7 @@ public class Parser {
      * @param list The task list containing the task.
      * @param ui The UI instance to display feedback.
      */
-    public void unmark(String userInput, TaskList list, Ui ui){
+    public void unmark(String userInput, TaskList list, Ui ui) {
         try {
             String[] input = userInput.split(" ");
             int number = Integer.parseInt(input[1]);
