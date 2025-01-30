@@ -98,6 +98,10 @@ public class Ui {
         System.out.println("_________________________________________________");
     }
 
+    /**
+     * Displays the list of matching tasks
+     * @param list The task list to be displayed
+     */
     public void findMessage(TaskList list) {
         System.out.println("_________________________________________________");
         if (list.size() < 1) {
@@ -106,12 +110,17 @@ public class Ui {
         } else {
             System.out.println("Here are the matching tasks in your list:");
             for (int i = 0; i < list.size(); i++) {
-                System.out.println("     " + (i + 1) + "."+ list.get(i).toString());
+                System.out.println("     " + (i + 1) + "." + list.get(i).toString());
             }
             System.out.println("_________________________________________________");
         }
     }
 
+
+    /**
+     * Displays an error message for when a command is unknown
+     *
+     */
     public void showCommandErrorMessage() {
         System.out.println("_________________________________________________");
         System.out.println("Enter a 'todo', 'deadline' or 'event' task, or 'mark' or 'unmark' action");

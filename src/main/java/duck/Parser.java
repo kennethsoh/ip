@@ -61,7 +61,7 @@ public class Parser {
      * @param list The task list to display.
      * @param ui The UI instance to handle output.
      */
-    public static void list(TaskList list, Ui ui){
+    public static void list(TaskList list, Ui ui) {
         ui.showList(list);
     }
 

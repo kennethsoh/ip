@@ -12,7 +12,7 @@ public class ToDo extends Task {
      * @param isDone Whether the task is completed.
      * @param description The description of the task.
      */
-    public ToDo (Boolean isDone, String description) {
+    public ToDo(Boolean isDone, String description) {
         super(isDone, description);
     }
 
