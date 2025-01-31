@@ -149,7 +149,7 @@ public class Parser {
             String[] parts = userInput.split("/by", 2);
             String[] firstPart = parts[0].split("deadline ", 2);
             String description = firstPart.length > 1 ? firstPart[1] : "";
-            String by = parts.length > 1 ? parts[1] : "";
+            String by = parts.length > 1 ? parts[1].trim() : "";
             if (description.isBlank() || by.isBlank()) {
                 throw new EmptyDetailsException("No description or 'by' deadline time provided");
             }
@@ -178,8 +178,8 @@ public class Parser {
             String[] parts = userInput.split(" /from | /to ");
             String[] firstPart = parts[0].split("event ", 2);
             String description = firstPart.length > 1 ? firstPart[1] : "";
-            String from = parts.length > 1 ? parts[1] : "";
-            String to = parts.length > 2 ? parts[2] : "";
+            String from = parts.length > 1 ? parts[1].trim() : "";
+            String to = parts.length > 2 ? parts[2].trim() : "";
             if (description.isBlank() || from.isBlank() || to.isBlank()) {
                 throw new EmptyDetailsException("No description or 'from' or 'to' time provided");
             }
@@ -212,6 +212,8 @@ public class Parser {
             ui.removeTaskMessage(task, list);
         } catch (IndexOutOfBoundsException e) {
             ui.showErrorMessage(e.getMessage());
+        } catch (Exception e) {
+            ui.showErrorMessage("Invalid Input, Try again!");
         }
     }
 

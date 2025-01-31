@@ -20,8 +20,10 @@ public class Event extends Task {
     public Event(Boolean isDone, String description, String from, String to) {
         super(isDone, description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        this.from = LocalDateTime.parse(from.trim(), formatter);
-        this.to = LocalDateTime.parse(to.trim(), formatter);
+        this.from = from.equalsIgnoreCase("now") ? LocalDateTime.now()
+                : LocalDateTime.parse(from.trim(), formatter);
+        this.to = to.equalsIgnoreCase("now") ? LocalDateTime.now()
+                : LocalDateTime.parse(to.trim(), formatter);
     }
 
     /**
