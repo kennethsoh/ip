@@ -22,36 +22,28 @@ public class Parser {
      * @param ui The UI instance to interact with the user.
      * @throws UnknownCommandException If the command is not recognized.
      */
-    public void parseCommand(String input, TaskList list, Ui ui) throws UnknownCommandException {
+    public String parseCommand(String input, TaskList list, Ui ui) throws UnknownCommandException {
         String[] parts = input.split(" ", 2);
         String command = parts[0].toLowerCase();
         switch (command) {
         case "list":
-            list(list, ui);
-            break;
+            return list(list, ui);
         case "mark":
-            mark(input, list, ui);
-            break;
+            return mark(input, list, ui);
         case "unmark":
-            unmark(input, list, ui);
-            break;
+            return unmark(input, list, ui);
         case "todo":
-            toDo(input, list, ui);
-            break;
+            return toDo(input, list, ui);
         case "deadline":
-            deadline(input, list, ui);
-            break;
+            return deadline(input, list, ui);
         case "event":
-            event(input, list, ui);
-            break;
+            return event(input, list, ui);
         case "delete":
-            delete(input, list, ui);
-            break;
+            return delete(input, list, ui);
         case "bye":
-            bye(ui);
-            break;
+            return bye(ui);
         default:
-            unknown(ui);
+            return unknown(ui);
         }
     }
 
@@ -61,8 +53,8 @@ public class Parser {
      * @param list The task list to display.
      * @param ui The UI instance to handle output.
      */
-    public static void list(TaskList list, Ui ui) {
-        ui.showList(list);
+    public static String list(TaskList list, Ui ui) {
+        return ui.showList(list);
     }
 
     /**
@@ -72,7 +64,7 @@ public class Parser {
      * @param list The task list containing the task.
      * @param ui The UI instance to display feedback.
      */
-    public void mark(String userInput, TaskList list, Ui ui) {
+    public String mark(String userInput, TaskList list, Ui ui) {
         try {
             String[] input = userInput.split(" ");
             int number = Integer.parseInt(input[1]);
@@ -82,9 +74,9 @@ public class Parser {
             Task task = list.get(number - 1);
             task.mark();
 
-            ui.mark(task);
+            return ui.mark(task);
         } catch (IndexOutOfBoundsException e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         }
     }
 
@@ -96,7 +88,7 @@ public class Parser {
      * @param list The task list containing the task.
      * @param ui The UI instance to display feedback.
      */
-    public void unmark(String userInput, TaskList list, Ui ui) {
+    public String unmark(String userInput, TaskList list, Ui ui) {
         try {
             String[] input = userInput.split(" ");
             int number = Integer.parseInt(input[1]);
@@ -106,10 +98,10 @@ public class Parser {
             Task task = list.get(number - 1);
             task.unmark();
 
-            ui.unmark(task);
+            return ui.unmark(task);
 
         } catch (IndexOutOfBoundsException e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         }
     }
 
@@ -120,7 +112,7 @@ public class Parser {
      * @param list The task list to add the task to.
      * @param ui The UI instance to display feedback.
      */
-    public void toDo(String userInput, TaskList list, Ui ui) {
+    public String toDo(String userInput, TaskList list, Ui ui) {
         try {
             String[] parts = userInput.split("todo ", 2);
             String description = parts.length > 1 ? parts[1] : "";
@@ -130,10 +122,10 @@ public class Parser {
             Task task = new ToDo(false, description);
             list.add(task);
 
-            ui.addTaskMessage(task, list);
+            return ui.addTaskMessage(task, list);
 
         } catch (EmptyDetailsException e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         }
     }
 
@@ -144,7 +136,7 @@ public class Parser {
      * @param list The task list to add the task to.
      * @param ui The UI instance to display feedback.
      */
-    public void deadline(String userInput, TaskList list, Ui ui) {
+    public String deadline(String userInput, TaskList list, Ui ui) {
         try {
             String[] parts = userInput.split("/by", 2);
             String[] firstPart = parts[0].split("deadline ", 2);
@@ -156,12 +148,12 @@ public class Parser {
             Task task = new Deadline(false, description, by);
             list.add(task);
 
-            ui.addTaskMessage(task, list);
+            return ui.addTaskMessage(task, list);
 
         } catch (EmptyDetailsException e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         } catch (Exception e) {
-            ui.showErrorMessage("Invalid date format! Use yyyy-MM-dd HHmm (e.g., 2025-01-27 2359).");
+            return ui.showErrorMessage("Invalid date format! Use yyyy-MM-dd HHmm (e.g., 2025-01-27 2359).");
         }
 
     }
@@ -173,7 +165,7 @@ public class Parser {
      * @param list The task list to add the task to.
      * @param ui The UI instance to display feedback.
      */
-    public void event(String userInput, TaskList list, Ui ui) {
+    public String event(String userInput, TaskList list, Ui ui) {
         try {
             String[] parts = userInput.split(" /from | /to ");
             String[] firstPart = parts[0].split("event ", 2);
@@ -185,12 +177,12 @@ public class Parser {
             }
             Task task = new Event(false, description, from, to);
             list.add(task);
-            ui.addTaskMessage(task, list);
+            return ui.addTaskMessage(task, list);
 
         } catch (EmptyDetailsException e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         } catch (Exception e) {
-            ui.showErrorMessage("Invalid date format! Use yyyy-MM-dd HHmm (e.g., 2025-01-27 2359).");
+            return ui.showErrorMessage("Invalid date format! Use yyyy-MM-dd HHmm (e.g., 2025-01-27 2359).");
         }
     }
 
@@ -201,7 +193,7 @@ public class Parser {
      * @param list The task list containing the task.
      * @param ui The UI instance to display feedback.
      */
-    public void delete(String userInput, TaskList list, Ui ui) {
+    public String delete(String userInput, TaskList list, Ui ui) {
         try {
             String[] input = userInput.split(" ");
             int number = Integer.parseInt(input[1]);
@@ -209,11 +201,11 @@ public class Parser {
                 throw new IndexOutOfBoundsException("Task number out of range.");
             }
             Task task = list.remove(number - 1);
-            ui.removeTaskMessage(task, list);
+            return ui.removeTaskMessage(task, list);
         } catch (IndexOutOfBoundsException e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         } catch (Exception e) {
-            ui.showErrorMessage("Invalid Input, Try again!");
+            return ui.showErrorMessage("Invalid Input, Try again!");
         }
     }
 
@@ -222,8 +214,7 @@ public class Parser {
      *
      * @param ui The UI instance to display the message.
      */
-    public void find(String userInput, TaskList list, Ui ui) {
-        // TODO
+    public String find(String userInput, TaskList list, Ui ui) {
         try {
             String[] input = userInput.split(" ");
             String keyword = input.length > 1 ? input[1] : "";
@@ -231,14 +222,14 @@ public class Parser {
                 throw new EmptyDetailsException("No keyword provided");
             }
             TaskList match = list.find(keyword);
-            ui.findMessage(match);
+            return ui.findMessage(match);
         } catch (Exception e) {
-            ui.showErrorMessage(e.getMessage());
+            return ui.showErrorMessage(e.getMessage());
         }
     }
 
-    public void bye(Ui ui) {
-        ui.showByeMessage();
+    public String bye(Ui ui) {
+        return ui.showByeMessage();
     }
 
     /**
@@ -246,8 +237,8 @@ public class Parser {
      *
      * @param ui The UI instance to display the message.
      */
-    public void unknown(Ui ui) {
-        ui.showCommandErrorMessage();
+    public String unknown(Ui ui) {
+        return ui.showCommandErrorMessage();
     }
 
 }
