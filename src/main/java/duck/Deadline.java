@@ -1,6 +1,7 @@
 package duck;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 /**
  * Represents a Deadline task with a due date.
@@ -19,7 +20,9 @@ public class Deadline extends Task {
     public Deadline(Boolean isDone, String description, String by) {
         super(isDone, description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        Random r = new Random();
         this.by = by.equalsIgnoreCase("now") ? LocalDateTime.now()
+                : by.equalsIgnoreCase("later") ? LocalDateTime.now().plusMinutes(r.nextInt(10000))
                 : LocalDateTime.parse(by.trim(), formatter);
     }
 
@@ -40,6 +43,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by:" + by.format(DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma")) + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma")) + ")";
     }
 }

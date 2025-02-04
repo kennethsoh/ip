@@ -38,4 +38,14 @@ public class Duck {
             storage.save(FILE_PATH, list);
         }
     }
+
+    public String getResponse(String input) throws UnknownCommandException, IOException {
+        Storage storage = new Storage(FILE_PATH);
+        Parser parser = new Parser();
+        Ui ui = new Ui();
+        TaskList list = new TaskList(storage.load());
+        String response = parser.parseCommand(input, list, ui);
+        storage.save(FILE_PATH, list);
+        return response;
+    }
 }

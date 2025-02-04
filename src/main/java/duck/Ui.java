@@ -27,12 +27,11 @@ public class Ui {
     /**
      * Displays the welcome message to the user.
      */
-    public void showWelcome() {
-        System.out.println("_________________________________________________");
-        System.out.println("Hello! I'm DUCK");
-        System.out.println("What can I do for you?");
-        System.out.println("Enter command 'list' to see all saved tasks (if any)");
-        System.out.println("_________________________________________________");
+    public String showWelcome() {
+        return """
+            Hello! I'm DUCK
+            What can I do for you?");
+            Enter command 'list' to see all saved tasks (if any)""";
     }
 
     /**
@@ -40,13 +39,13 @@ public class Ui {
      *
      * @param list The task list to be displayed.
      */
-    public void showList(TaskList list) {
-        System.out.println("_________________________________________________");
-        System.out.println("Here are the tasks in your list:");
+    public String showList(TaskList list) {
+        StringBuilder output = new StringBuilder();
+        output.append("Here are the tasks in your list:\n");
         for (int i = 0; i < list.size(); i++) {
-            System.out.println("     " + (i + 1) + "." + list.get(i).toString());
+            output.append("  ").append(i + 1).append(". ").append(list.get(i).toString()).append("\n");
         }
-        System.out.println("_________________________________________________");
+        return output.toString();
     }
 
     /**
@@ -54,11 +53,9 @@ public class Ui {
      *
      * @param t The task that was marked as completed.
      */
-    public void mark(Task t) {
-        System.out.println("_________________________________________________");
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println("     [" + t.getStatusIcon() + "] " + t.getDescription());
-        System.out.println("_________________________________________________");
+    public String mark(Task t) {
+        return "Nice! I've marked this task as done:\n"
+               + "     [" + t.getStatusIcon() + "] " + t.getDescription() + "\n";
     }
 
     /**
@@ -66,11 +63,9 @@ public class Ui {
      *
      * @param t The task that was unmarked.
      */
-    public void unmark(Task t) {
-        System.out.println("_________________________________________________");
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("     [" + t.getStatusIcon() + "] " + t.getDescription());
-        System.out.println("_________________________________________________");
+    public String unmark(Task t) {
+        return "Nice! I've marked this task as not done yet:\n"
+               + "     [" + t.getStatusIcon() + "] " + t.getDescription() + "\n";
     }
 
     /**
@@ -79,40 +74,30 @@ public class Ui {
      * @param t The task that was added.
      * @param list The task list where the task was added.
      */
-    public void addTaskMessage(Task t, TaskList list) {
-        System.out.println("_________________________________________________");
-        System.out.println("Got it. I've added this task:");
-        System.out.println("     " + t.toString());
-        System.out.println("Now you have " + list.size() + " tasks in the list.");
-        System.out.println("_________________________________________________");
+    public String addTaskMessage(Task t, TaskList list) {
+        return "I've added this task:\n"
+               + t.toString() + "\n"
+               + "Now you have " + list.size() + " tasks in the list\n";
     }
 
     /**
      * Displays an error message for unrecognized commands.
      */
-    public void removeTaskMessage(Task t, TaskList list) {
-        System.out.println("_________________________________________________");
-        System.out.println("Noted I've removed this task:");
-        System.out.println("     " + t.toString());
-        System.out.println("Now you have " + list.size() + " tasks in the list.");
-        System.out.println("_________________________________________________");
+    public String removeTaskMessage(Task t, TaskList list) {
+        return "I've removed this task:\n"
+               + t.toString() + "\n"
+               + "Now you have " + list.size() + " tasks in the list\n";
     }
 
     /**
      * Displays the list of matching tasks
      * @param list The task list to be displayed
      */
-    public void findMessage(TaskList list) {
-        System.out.println("_________________________________________________");
+    public String findMessage(TaskList list) {
         if (list.size() < 1) {
-            System.out.println("There are no matching tasks in your list:");
-            System.out.println("_________________________________________________");
+            return "There are no matching tasks in your list:";
         } else {
-            System.out.println("Here are the matching tasks in your list:");
-            for (int i = 0; i < list.size(); i++) {
-                System.out.println("     " + (i + 1) + "." + list.get(i).toString());
-            }
-            System.out.println("_________________________________________________");
+            return showList(list);
         }
     }
 
@@ -121,10 +106,8 @@ public class Ui {
      * Displays an error message for when a command is unknown
      *
      */
-    public void showCommandErrorMessage() {
-        System.out.println("_________________________________________________");
-        System.out.println("Enter a 'todo', 'deadline' or 'event' task, or 'mark' or 'unmark' action");
-        System.out.println("_________________________________________________");
+    public String showCommandErrorMessage() {
+        return "Enter a 'todo', 'deadline' or 'event' task, or 'mark' or 'unmark' action";
     }
 
     /**
@@ -132,18 +115,14 @@ public class Ui {
      *
      * @param m The error message to be displayed.
      */
-    public void showErrorMessage(String m) {
-        System.out.println("_________________________________________________");
-        System.out.println(m);
-        System.out.println("_________________________________________________");
-
+    public String showErrorMessage(String m) {
+        return m;
     }
 
     /**
      * Displays a goodbye message to the user.
      */
-    public void showByeMessage() {
-        System.out.println("     Bye. Hope to see you again soon!");
-        System.out.println("_________________________________________________");
+    public String showByeMessage() {
+        return "Quack. Hope to see you again soon!";
     }
 }

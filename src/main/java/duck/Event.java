@@ -1,6 +1,7 @@
 package duck;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 /**
  * Represents an Event task with a start and end time.
@@ -20,9 +21,12 @@ public class Event extends Task {
     public Event(Boolean isDone, String description, String from, String to) {
         super(isDone, description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        Random r = new Random();
         this.from = from.equalsIgnoreCase("now") ? LocalDateTime.now()
+                : from.equalsIgnoreCase("later") ? LocalDateTime.now().plusMinutes(r.nextInt(10000))
                 : LocalDateTime.parse(from.trim(), formatter);
         this.to = to.equalsIgnoreCase("now") ? LocalDateTime.now()
+                : from.equalsIgnoreCase("later") ? LocalDateTime.now().plusMinutes(r.nextInt(10000))
                 : LocalDateTime.parse(to.trim(), formatter);
     }
 
