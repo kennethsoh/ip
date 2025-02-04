@@ -210,9 +210,11 @@ public class Parser {
     }
 
     /**
-     * Displays the goodbye message.
+     * Displays a matching list of tasks based on keyword
      *
-     * @param ui The UI instance to display the message.
+     * @param userInput The user input containing keyword
+     * @param list The task list containing the task.
+     * @param ui The UI instance to display feedback.
      */
     public String find(String userInput, TaskList list, Ui ui) {
         try {
@@ -228,6 +230,12 @@ public class Parser {
         }
     }
 
+
+    /**
+     * Displays the goodbye message.
+     *
+     * @param ui The UI instance to display the message.
+     */
     public String bye(Ui ui) {
         return ui.showByeMessage();
     }
