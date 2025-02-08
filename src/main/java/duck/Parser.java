@@ -40,6 +40,8 @@ public class Parser {
             return event(input, list, ui);
         case "delete":
             return delete(input, list, ui);
+        case "find":
+            return find(input, list, ui);
         case "bye":
             return bye(ui);
         default:
