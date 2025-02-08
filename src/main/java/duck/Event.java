@@ -26,7 +26,7 @@ public class Event extends Task {
                 : from.equalsIgnoreCase("later") ? LocalDateTime.now().plusMinutes(r.nextInt(10000))
                 : LocalDateTime.parse(from.trim(), formatter);
         this.to = to.equalsIgnoreCase("now") ? LocalDateTime.now()
-                : from.equalsIgnoreCase("later") ? LocalDateTime.now().plusMinutes(r.nextInt(10000))
+                : to.equalsIgnoreCase("later") ? LocalDateTime.now().plusMinutes(r.nextInt(10000))
                 : LocalDateTime.parse(to.trim(), formatter);
     }
 
