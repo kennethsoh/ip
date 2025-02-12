@@ -25,6 +25,7 @@ public class Parser {
     public String parseCommand(String input, TaskList list, Ui ui) throws UnknownCommandException {
         String[] parts = input.split(" ", 2);
         String command = parts[0].toLowerCase();
+        assert !command.isEmpty() : "Command cannot be empty";
         switch (command) {
         case "list":
             return list(list, ui);

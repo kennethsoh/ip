@@ -8,6 +8,8 @@ import java.util.Random;
  */
 public class Deadline extends Task {
 
+    static final int RANDOM_LIMIT = 10000;
+    static final String DATETIME_VIEW_PATTERN = "dd MMM yyyy, hh:mma";
     protected LocalDateTime by;
 
     /**
@@ -21,9 +23,11 @@ public class Deadline extends Task {
         super(isDone, description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         Random r = new Random();
-        this.by = by.equalsIgnoreCase("now") ? LocalDateTime.now()
-                : by.equalsIgnoreCase("later") ? LocalDateTime.now().plusMinutes(r.nextInt(10000))
+        LocalDateTime now = LocalDateTime.now();
+        this.by = by.equalsIgnoreCase("now") ? now
+                : by.equalsIgnoreCase("later") ? now.plusMinutes(r.nextInt(RANDOM_LIMIT))
                 : LocalDateTime.parse(by.trim(), formatter);
+        assert this.by.isAfter(now) : "The deadline cannot be in the past";
     }
 
 
@@ -43,6 +47,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mma")) + ")";
+        return "[D]" + super.toString() + " (by: "
+               + by.format(DateTimeFormatter.ofPattern(DATETIME_VIEW_PATTERN)) + ")";
     }
 }
