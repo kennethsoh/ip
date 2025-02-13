@@ -174,8 +174,6 @@ public class Parser {
             }
             Task task = new Event(false, description, from, to);
             list.add(task);
-            System.out.println(task);
-            System.out.println(list);
             return ui.addTaskMessage(task, list);
 
         } catch (EmptyDetailsException e) {

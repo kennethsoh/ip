@@ -73,7 +73,7 @@ public class Storage {
                 } else if (type.equals("E")) {
                     String[] details = parts[3].trim().split(" to ");
                     String from = details[0].trim();
-                    String to = details[0].trim();
+                    String to = details[1].trim();
                     LocalDateTime fromTime = LocalDateTime.parse(from, dateTimeFormat);
                     LocalDateTime toTime = LocalDateTime.parse(to, dateTimeFormat);
                     list.add(new Event(isDone, description,
