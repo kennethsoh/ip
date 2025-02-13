@@ -14,6 +14,14 @@ public class Parser {
     public Parser() {
     }
 
+    private String[] parseInput(String input, String regex) {
+        return input.split(regex);
+    }
+
+    private String[] parseInput(String input, String regex, int numOfParts) {
+        return input.split(regex, numOfParts);
+    }
+
     /**
      * Parses and executes a command based on user input.
      *
@@ -23,31 +31,19 @@ public class Parser {
      * @throws UnknownCommandException If the command is not recognized.
      */
     public String parseCommand(String input, TaskList list, Ui ui) throws UnknownCommandException {
-        String[] parts = input.split(" ", 2);
-        String command = parts[0].toLowerCase();
-        assert !command.isEmpty() : "Command cannot be empty";
-        switch (command) {
-        case "list":
-            return list(list, ui);
-        case "mark":
-            return mark(input, list, ui);
-        case "unmark":
-            return unmark(input, list, ui);
-        case "todo":
-            return toDo(input, list, ui);
-        case "deadline":
-            return deadline(input, list, ui);
-        case "event":
-            return event(input, list, ui);
-        case "delete":
-            return delete(input, list, ui);
-        case "find":
-            return find(input, list, ui);
-        case "bye":
-            return bye(ui);
-        default:
-            return unknown(ui);
-        }
+        String command = parseInput(input, " ", 2)[0].toLowerCase();
+        return switch (command) {
+        case "list" -> list(list, ui);
+        case "mark" -> mark(input, list, ui);
+        case "unmark" -> unmark(input, list, ui);
+        case "todo" -> toDo(input, list, ui);
+        case "deadline" -> deadline(input, list, ui);
+        case "event" -> event(input, list, ui);
+        case "delete" -> delete(input, list, ui);
+        case "find" -> find(input, list, ui);
+        case "bye" -> bye(ui);
+        default -> unknown(ui);
+        };
     }
 
     /**
@@ -69,8 +65,7 @@ public class Parser {
      */
     public String mark(String userInput, TaskList list, Ui ui) {
         try {
-            String[] input = userInput.split(" ");
-            int number = Integer.parseInt(input[1]);
+            int number = Integer.parseInt(parseInput(userInput, " ")[1]);
             if (number <= 0 || number > list.size()) {
                 throw new IndexOutOfBoundsException("Task number out of range.");
             }
@@ -93,8 +88,7 @@ public class Parser {
      */
     public String unmark(String userInput, TaskList list, Ui ui) {
         try {
-            String[] input = userInput.split(" ");
-            int number = Integer.parseInt(input[1]);
+            int number = Integer.parseInt(parseInput(userInput, " ")[1]);
             if (number <= 0 || number > list.size()) {
                 throw new IndexOutOfBoundsException("Task number out of range.");
             }
@@ -117,7 +111,7 @@ public class Parser {
      */
     public String toDo(String userInput, TaskList list, Ui ui) {
         try {
-            String[] parts = userInput.split("todo ", 2);
+            String[] parts = parseInput(userInput, "todo", 2);
             String description = parts.length > 1 ? parts[1] : "";
             if (description.isBlank()) {
                 throw new EmptyDetailsException("No description provided");
@@ -141,8 +135,8 @@ public class Parser {
      */
     public String deadline(String userInput, TaskList list, Ui ui) {
         try {
-            String[] parts = userInput.split("/by", 2);
-            String[] firstPart = parts[0].split("deadline ", 2);
+            String[] parts = parseInput(userInput, "/by", 2);
+            String[] firstPart = parseInput(parts[0], "deadline", 2);
             String description = firstPart.length > 1 ? firstPart[1] : "";
             String by = parts.length > 1 ? parts[1].trim() : "";
             if (description.isBlank() || by.isBlank()) {
@@ -170,8 +164,8 @@ public class Parser {
      */
     public String event(String userInput, TaskList list, Ui ui) {
         try {
-            String[] parts = userInput.split(" /from | /to ");
-            String[] firstPart = parts[0].split("event ", 2);
+            String[] parts = parseInput(userInput, "/from | /to");
+            String[] firstPart = parseInput(parts[0], "event", 2);
             String description = firstPart.length > 1 ? firstPart[1] : "";
             String from = parts.length > 1 ? parts[1].trim() : "";
             String to = parts.length > 2 ? parts[2].trim() : "";
@@ -180,6 +174,8 @@ public class Parser {
             }
             Task task = new Event(false, description, from, to);
             list.add(task);
+            System.out.println(task);
+            System.out.println(list);
             return ui.addTaskMessage(task, list);
 
         } catch (EmptyDetailsException e) {
@@ -198,8 +194,7 @@ public class Parser {
      */
     public String delete(String userInput, TaskList list, Ui ui) {
         try {
-            String[] input = userInput.split(" ");
-            int number = Integer.parseInt(input[1]);
+            int number = Integer.parseInt(parseInput(userInput, " ")[1]);
             if (number <= 0 || number > list.size()) {
                 throw new IndexOutOfBoundsException("Task number out of range.");
             }
@@ -221,7 +216,7 @@ public class Parser {
      */
     public String find(String userInput, TaskList list, Ui ui) {
         try {
-            String[] input = userInput.split(" ");
+            String[] input = parseInput(userInput, " ");
             String keyword = input.length > 1 ? input[1] : "";
             if (keyword.isBlank()) {
                 throw new EmptyDetailsException("No keyword provided");

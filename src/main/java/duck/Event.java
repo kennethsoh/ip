@@ -1,13 +1,11 @@
 package duck;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Random;
 
 /**
  * Represents an Event task with a start and end time.
  */
 public class Event extends Task {
-    static final int RANDOM_LIMIT = 10000;
     static final String DATETIME_VIEW_PATTERN = "dd MMM yyyy, hh:mma";
     protected LocalDateTime from;
     protected LocalDateTime to;
@@ -22,16 +20,11 @@ public class Event extends Task {
      */
     public Event(Boolean isDone, String description, String from, String to) {
         super(isDone, description);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        Random r = new Random();
-        this.from = from.equalsIgnoreCase("now") ? LocalDateTime.now()
-                : from.equalsIgnoreCase("later") ? LocalDateTime.now().plusMinutes(r.nextInt(RANDOM_LIMIT))
-                : LocalDateTime.parse(from.trim(), formatter);
-        this.to = to.equalsIgnoreCase("now") ? LocalDateTime.now()
-                : to.equalsIgnoreCase("later") ? LocalDateTime.now().plusMinutes(r.nextInt(RANDOM_LIMIT))
-                : LocalDateTime.parse(to.trim(), formatter);
-        assert this.from.isBefore(this.to) : "Event start time must be before end time";
+        this.from = setTime(from);
+        this.to = setTime(to);
+
     }
+
 
     /**
      * Retrieves the start time of the event.
