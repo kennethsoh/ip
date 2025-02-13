@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
  * Represents a Deadline task with a due date.
  */
 public class Deadline extends Task {
-    static final int RANDOM_LIMIT = 10000;
     static final String DATETIME_VIEW_PATTERN = "dd MMM yyyy, hh:mma";
     protected LocalDateTime by;
 

@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
  * Represents an Event task with a start and end time.
  */
 public class Event extends Task {
-    static final int RANDOM_LIMIT = 10000;
     static final String DATETIME_VIEW_PATTERN = "dd MMM yyyy, hh:mma";
     protected LocalDateTime from;
     protected LocalDateTime to;
@@ -23,6 +22,7 @@ public class Event extends Task {
         super(isDone, description);
         this.from = setTime(from);
         this.to = setTime(to);
+
     }
 
 
