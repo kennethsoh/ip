@@ -23,26 +23,28 @@ public class MainWindow extends AnchorPane {
     @FXML
     private Button sendButton;
 
-    private Duck duck;
+    private Duck duck = new Duck();
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.jpeg"));
     private Image duckImage = new Image(this.getClass().getResourceAsStream("/images/duck.jpg"));
 
+    public MainWindow() throws IOException {
+    }
+
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        String text =
+                "Hello! I'm DUCK\n"
+                        + "What can I do for you?\n"
+                        + "Enter command 'list' to see all saved tasks (if any)";
+        dialogContainer.getChildren().addAll(
+                DialogBox.getDukeDialog(text, duckImage));
     }
 
     /** Injects the Duke instance */
     public void setDuck(Duck d) {
         duck = d;
-        String text =
-            "Hello! I'm DUCK\n"
-            + "What can I do for you?\n"
-            + "Enter command 'list' to see all saved tasks (if any)";
-        dialogContainer.getChildren().addAll(
-                DialogBox.getDukeDialog(text, duckImage)
-        );
     }
 
     /**
