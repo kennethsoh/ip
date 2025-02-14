@@ -12,6 +12,7 @@ import duck.exception.UnknownCommandException;
 public class Duck {
 
     private static final String FILE_PATH = "./data/duck.txt";
+    private TaskHistory history;
     private Parser parser;
     private Storage storage;
     private TaskList list;
@@ -22,6 +23,7 @@ public class Duck {
         parser = new Parser();
         ui = new Ui();
         list = new TaskList(storage.load());
+        history = new TaskHistory();
     }
 
     /**
@@ -38,20 +40,21 @@ public class Duck {
         Parser parser = new Parser();
         Ui ui = new Ui();
         TaskList list = new TaskList(storage.load());
+        TaskHistory history = new TaskHistory();
 
         ui.showWelcome();
 
         boolean checkBye = false;
         while (!checkBye) {
             String userInput = ui.readCommand();
-            parser.parseCommand(userInput, list, ui);
+            parser.parseCommand(userInput, list, ui, history);
             checkBye = userInput.equalsIgnoreCase("bye");
             storage.save(FILE_PATH, list);
         }
     }
 
     public String getResponse(String input) throws UnknownCommandException, IOException {
-        String response = parser.parseCommand(input, list, ui);
+        String response = parser.parseCommand(input, list, ui, history);
         storage.save(FILE_PATH, list);
         return response;
     }

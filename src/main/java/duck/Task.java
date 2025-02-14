@@ -3,6 +3,7 @@ package duck;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
+import java.util.Stack;
 
 /**
  * Represents a task with a description and completion status.
@@ -86,5 +87,8 @@ public class Task {
         return time.equalsIgnoreCase("now") ? now
                 : time.equalsIgnoreCase("later") ? now.plusMinutes(r.nextInt(RANDOM_LIMIT))
                 : LocalDateTime.parse(time.trim(), formatter);
+    }
+
+    public void snooze() {
     }
 }

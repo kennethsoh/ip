@@ -1,6 +1,7 @@
 package duck;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 
 /**
  * Represents a Deadline task with a due date.
@@ -21,6 +22,11 @@ public class Deadline extends Task {
         this.by = setTime(by);
     }
 
+    @Override
+    public void snooze() {
+        Random r = new Random();
+        this.by = this.by.plusMinutes(1 + r.nextInt(RANDOM_LIMIT));
+    }
 
     /**
      * Retrieves the deadline of the task.

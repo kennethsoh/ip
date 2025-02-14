@@ -101,6 +101,14 @@ public class Ui {
         }
     }
 
+    /**
+     * Displays snooze message
+     * @param t The task that was snoozed
+     */
+    public String snoozeMessage(Task t) {
+        return "Nice! I've snoozed this task:\n"
+                + t.toString() + "\n";
+    }
 
     /**
      * Displays an error message for when a command is unknown
