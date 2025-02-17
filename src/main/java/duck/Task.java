@@ -3,7 +3,6 @@ package duck;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
-import java.util.Stack;
 
 /**
  * Represents a task with a description and completion status.
@@ -62,7 +61,7 @@ public class Task {
      * @return "X" if done, " " otherwise.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : "  "); // mark done task with X
+        return (isDone ? "X" : " "); // mark done task with X
     }
 
     /**

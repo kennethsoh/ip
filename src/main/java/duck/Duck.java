@@ -18,6 +18,9 @@ public class Duck {
     private TaskList list;
     private Ui ui;
 
+    /**
+     * Creates an instance of Duck
+     */
     public Duck() throws IOException {
         storage = new Storage(FILE_PATH);
         parser = new Parser();
