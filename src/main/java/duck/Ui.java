@@ -55,7 +55,7 @@ public class Ui {
      */
     public String mark(Task t) {
         return "Nice! I've marked this task as done:\n"
-               + "     [" + t.getStatusIcon() + "] " + t.getDescription() + "\n";
+                + t.toString() + "\n";
     }
 
     /**
@@ -65,7 +65,7 @@ public class Ui {
      */
     public String unmark(Task t) {
         return "Nice! I've marked this task as not done yet:\n"
-               + "     [" + t.getStatusIcon() + "] " + t.getDescription() + "\n";
+                + t.toString() + "\n";
     }
 
     /**
