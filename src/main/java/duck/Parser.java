@@ -223,6 +223,7 @@ public class Parser {
 
     /**
      * Displays a matching list of tasks based on keyword
+     * The keyword is the search term entered by the user after the command 'find'
      *
      * @param userInput The user input containing keyword
      * @param list The task list containing the task.
@@ -230,8 +231,7 @@ public class Parser {
      */
     public String find(String userInput, TaskList list, Ui ui) {
         try {
-            String[] input = parseInput(userInput, " ");
-            String keyword = input.length > 1 ? input[1] : "";
+            String keyword = userInput.substring(userInput.indexOf(" ") + 1).trim();
             if (keyword.isBlank()) {
                 throw new EmptyDetailsException("No keyword provided");
             }
