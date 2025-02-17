@@ -63,7 +63,7 @@ public class TaskList {
     public TaskList find(String keyword) {
         TaskList matchingList = new TaskList(new ArrayList<>());
         for (Task task : this.tasks) {
-            if (keyword.equalsIgnoreCase(task.getDescription())) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
                 matchingList.add(task);
             }
         }
