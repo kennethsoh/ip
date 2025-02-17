@@ -44,11 +44,11 @@ public class Duck {
 
         ui.showWelcome();
 
-        boolean checkBye = false;
-        while (!checkBye) {
+        boolean isByeCommand = false;
+        while (!isByeCommand) {
             String userInput = ui.readCommand();
             parser.parseCommand(userInput, list, ui, history);
-            checkBye = userInput.equalsIgnoreCase("bye");
+            isByeCommand = userInput.equalsIgnoreCase("bye");
             storage.save(FILE_PATH, list);
         }
     }
