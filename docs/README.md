@@ -154,7 +154,7 @@ Expected outcome: Searches for tasks with descriptions that contain the string "
 
 Sets the 'by' time for a deadline task to a random future date and time
 
-Example of usage: `snooze 1`
+Example: `snooze 1`
 
 Expected outcome: Randomly sets the deadline for a Deadline task to the future
 
