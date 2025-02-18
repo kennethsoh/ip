@@ -4,7 +4,7 @@ Duck is a friendly chatbot that manages your todo lists, deadlines and events,
 and is easy to setup and use. 
 
 ## Features
-Overall list of features:
+There are 9 features in total.
 
 ### Create tasks
 1. [Tasks without deadlines: `todo`](#todo)
@@ -12,11 +12,12 @@ Overall list of features:
 3. [Events with duration: `event`](#event)
 
 ### Manage tasks
-4. [Delete task: `delete`](#delete)
-5. [Mark task: `mark`](#mark)
-6. [Unmark task: `unmark`](#unmark)
-7. [List of tasks: `list`](#list)
-8. [Search tasks: `find`](#find)
+1. [Delete task: `delete`](#delete)
+2. [Mark task: `mark`](#mark)
+3. [Unmark task: `unmark`](#unmark)
+4. [List of tasks: `list`](#list)
+5. [Search tasks: `find`](#find)
+6. [Snooze deadline: `snooze`](#snooze)
 
 ## Usage
 ### `todo`
