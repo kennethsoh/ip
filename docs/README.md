@@ -47,7 +47,7 @@ Expected outcome: Stores a task with a description "lab assignment" and deadline
 ```
     __________________________________________________________
     I've added this task:
-    [D][ ] lab assignment (by: 19 Feb 2025, 11:59pm)
+    [D][ ] lab assignment (by: 19 FEB 2025, 11:59PM)
     Now you have 1 tasks in the list.
     __________________________________________________________
 ```
@@ -68,7 +68,7 @@ Expected outcome: Stores an event with a description "study session" and duratio
 ```
     __________________________________________________________
     I've added this task:
-    [E][ ] study (from: 17 Feb 2025, 12:58pm to: 18 Feb 2025, 04:19am)
+    [E][ ] study (from: 17 FEB 2025, 12:58PM to: 18 FEB 2025, 04:19AM)
     Now you have 1 tasks in the list.
     __________________________________________________________
 ```
@@ -130,8 +130,8 @@ Expected outcome: Shows the list of tasks.
     __________________________________________________________
     Here are the tasks in your list:
     1.[T][ ] buy groceries
-    2.[D][ ] lab assignment (by: 19 Feb 2025, 11:59pm)
-    3.[E][ ] study (from: 17 Feb 2025, 12:58pm to: 18 Feb 2025, 04:19am)
+    2.[D][ ] lab assignment (by: 19 FEB 2025, 11:59PM)
+    3.[E][ ] study (from: 17 FEB 2025, 12:58PM to: 18 FEB 2025, 04:19AM)
     __________________________________________________________
 ```
 
@@ -146,7 +146,7 @@ Expected outcome: Searches for tasks with descriptions that contain the string "
 ```
     __________________________________________________________
     Here are the matching tasks in your list:
-    1.[D][ ] lab assignment (by: 19 Feb 2025, 11:59pm)
+    1.[D][ ] lab assignment (by: 19 FEB 2025, 11:59PM)
     __________________________________________________________
 ```
 
@@ -161,7 +161,7 @@ Expected outcome: Randomly sets the deadline for a Deadline task to the future
 ```
     __________________________________________________________
     Nice. I've snoozed this task:
-    1.[D][ ] lab assignment (by: 22 Feb 2025, 04:20pm)
+    1.[D][ ] lab assignment (by: 22 FEB 2025, 04:20PM)
     __________________________________________________________
 ```
 

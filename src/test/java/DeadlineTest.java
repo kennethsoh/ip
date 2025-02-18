@@ -10,14 +10,14 @@ public class DeadlineTest {
     @Test
     public void createDeadlineTest() {
         Deadline deadline = new Deadline(false, "Submit assignment", "2025-02-20 2359");
-        assertEquals("[D][ ] Submit assignment (by: 20 Feb 2025, 11:59pm)", deadline.toString());
+        assertEquals("[D][ ] Submit assignment (by: 20 FEB 2025, 11:59PM)", deadline.toString());
     }
 
     @Test
     public void markDeadlineTest() {
         Deadline deadline = new Deadline(false, "Submit assignment", "2025-02-20 2359");
         deadline.mark();
-        assertEquals("[D][X] Submit assignment (by: 20 Feb 2025, 11:59pm)", deadline.toString());
+        assertEquals("[D][X] Submit assignment (by: 20 FEB 2025, 11:59PM)", deadline.toString());
     }
 
     @Test

@@ -52,7 +52,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString()
-                + " (from: " + from.format(DateTimeFormatter.ofPattern(DATETIME_VIEW_PATTERN)).toLowerCase()
-                + " to: " + to.format(DateTimeFormatter.ofPattern(DATETIME_VIEW_PATTERN)).toLowerCase() + ")";
+                + " (from: " + from.format(DateTimeFormatter.ofPattern(DATETIME_VIEW_PATTERN)).toUpperCase()
+                + " to: " + to.format(DateTimeFormatter.ofPattern(DATETIME_VIEW_PATTERN)).toUpperCase() + ")";
     }
 }
