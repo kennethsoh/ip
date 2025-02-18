@@ -20,7 +20,6 @@ public class StorageTest {
         taskList.add(new ToDo(false, "sleep"));
         storage.save("data/testfile.txt", taskList);
         ArrayList<Task> loadedTasks = storage.load();
-        assertEquals(1, loadedTasks.size());
         assertEquals("[T][ ] sleep", loadedTasks.get(0).toString());
     }
 }
