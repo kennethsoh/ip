@@ -14,13 +14,36 @@ public class Parser {
     public Parser() {
     }
 
+    /**
+     * Parses userInput into a String array
+     * @param input userInput
+     * @param regex Regular expression defining where the string is split
+     */
     private String[] parseInput(String input, String regex) {
         return input.split(regex);
     }
 
+    /**
+     * Parses userInput into a String array
+     * @param input userInput
+     * @param regex Regular expression defining where the string is split
+     * @param numOfParts max length of the returned String array
+     */
     private String[] parseInput(String input, String regex, int numOfParts) {
         return input.split(regex, numOfParts);
     }
+
+    /**
+     * Checks if string array is empty, then set the value of String found at
+     * specific index of stringArray
+     * @param stringArray input String Array from parseInput() method
+     * @param index index of stringArray[]
+     * @return
+     */
+    private static String getString(String[] stringArray, int index) {
+        return stringArray.length > index ? stringArray[index].trim() : "";
+    }
+
 
     /**
      * Parses and executes a command based on user input.
@@ -114,7 +137,7 @@ public class Parser {
     public String toDo(String userInput, TaskList list, Ui ui) {
         try {
             String[] parts = parseInput(userInput, "todo", 2);
-            String description = parts.length > 1 ? parts[1] : "";
+            String description = getString(parts, 1);
             if (description.isBlank()) {
                 throw new EmptyDetailsException("No description provided");
             }
@@ -128,6 +151,7 @@ public class Parser {
         }
     }
 
+
     /**
      * Adds a Deadline task to the list.
      *
@@ -139,8 +163,8 @@ public class Parser {
         try {
             String[] parts = parseInput(userInput, "/by", 2);
             String[] firstPart = parseInput(parts[0], "deadline", 2);
-            String description = firstPart.length > 1 ? firstPart[1] : "";
-            String by = parts.length > 1 ? parts[1].trim() : "";
+            String description = getString(firstPart, 1);
+            String by = getString(parts, 1);
             if (description.isBlank() || by.isBlank()) {
                 throw new EmptyDetailsException("No description or 'by' deadline time provided");
             }
@@ -168,9 +192,9 @@ public class Parser {
         try {
             String[] parts = parseInput(userInput, "/from | /to");
             String[] firstPart = parseInput(parts[0], "event", 2);
-            String description = firstPart.length > 1 ? firstPart[1] : "";
-            String from = parts.length > 1 ? parts[1].trim() : "";
-            String to = parts.length > 2 ? parts[2].trim() : "";
+            String description = getString(firstPart, 1);
+            String from = getString(parts, 1);
+            String to = getString(parts, 2);
             if (description.isBlank() || from.isBlank() || to.isBlank()) {
                 throw new EmptyDetailsException("No description or 'from' or 'to' time provided");
             }
