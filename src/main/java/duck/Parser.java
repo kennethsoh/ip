@@ -30,36 +30,22 @@ public class Parser {
      * @param ui The UI instance to interact with the user.
      * @throws UnknownCommandException If the command is not recognized.
      */
-    public String parseCommand(String input, TaskList list, Ui ui, TaskHistory history) throws UnknownCommandException {
+    public String parseCommand(String input, TaskList list, Ui ui) throws UnknownCommandException {
         // TODO: CHECK if should push to Stack if input is 'undo'
         String command = parseInput(input, " ", 2)[0].toLowerCase();
-        switch (command) {
-        case "list":
-            return list(list, ui);
-        case "mark":
-            history.push(input);
-            return mark(input, list, ui);
-        case "unmark":
-            return unmark(input, list, ui);
-        case "todo":
-            return toDo(input, list, ui);
-        case "deadline":
-            return deadline(input, list, ui);
-        case "event":
-            return event(input, list, ui);
-        case "delete":
-            return delete(input, list, ui);
-        case "find":
-            return find(input, list, ui);
-        case "undo":
-            return undo(list, ui, history);
-        case "snooze":
-            return snooze(input, list, ui);
-        case "bye":
-            return bye(ui);
-        default:
-            return unknown(ui);
-        }
+        return switch (command) {
+        case "list" -> list(list, ui);
+        case "mark" -> mark(input, list, ui);
+        case "unmark" -> unmark(input, list, ui);
+        case "todo" -> toDo(input, list, ui);
+        case "deadline" -> deadline(input, list, ui);
+        case "event" -> event(input, list, ui);
+        case "delete" -> delete(input, list, ui);
+        case "find" -> find(input, list, ui);
+        case "snooze" -> snooze(input, list, ui);
+        case "bye" -> bye(ui);
+        default -> unknown(ui);
+        };
     }
 
     /**
@@ -240,17 +226,6 @@ public class Parser {
         } catch (Exception e) {
             return ui.showErrorMessage(e.getMessage());
         }
-    }
-
-
-    /**
-     * Undoes last command based on Task History
-     *
-     * @param history TaskHistory stack
-     */
-    public String undo(TaskList list, Ui ui, TaskHistory history) throws UnknownCommandException {
-        String prevCommand = history.getLast();
-        return parseCommand(prevCommand, list, ui, history);
     }
 
     /**

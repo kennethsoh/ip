@@ -33,31 +33,29 @@ public class Duck {
      * The main entry point of the DUCK application.
      *
      * @param args Command-line arguments (not used).
-     * @throws EmptyDetailsException If a task description is missing.
      * @throws UnknownCommandException If an unrecognized command is entered.
      * @throws IOException If an error occurs while reading or writing the storage file.
      */
-    public static void main(String[] args) throws EmptyDetailsException, UnknownCommandException, IOException {
+    public static void main(String[] args) throws UnknownCommandException, IOException {
 
         Storage storage = new Storage(FILE_PATH);
         Parser parser = new Parser();
         Ui ui = new Ui();
         TaskList list = new TaskList(storage.load());
-        TaskHistory history = new TaskHistory();
 
         ui.showWelcome();
 
         boolean isByeCommand = false;
         while (!isByeCommand) {
             String userInput = ui.readCommand();
-            parser.parseCommand(userInput, list, ui, history);
+            parser.parseCommand(userInput, list, ui);
             isByeCommand = userInput.equalsIgnoreCase("bye");
             storage.save(FILE_PATH, list);
         }
     }
 
-    public String getResponse(String input) throws UnknownCommandException, IOException {
-        String response = parser.parseCommand(input, list, ui, history);
+    public String getResponse(String input) throws UnknownCommandException {
+        String response = parser.parseCommand(input, list, ui);
         storage.save(FILE_PATH, list);
         return response;
     }
