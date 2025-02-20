@@ -2,7 +2,6 @@ package duck;
 
 import java.io.IOException;
 
-import duck.exception.EmptyDetailsException;
 import duck.exception.UnknownCommandException;
 
 /**
