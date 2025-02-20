@@ -26,7 +26,7 @@ There are 11 commands in total.
 ## Usage
 ### `quack`
 
-Interact with Duck in his native language
+Interact with Duck in his native language.
 
 Example: `quack`
 
@@ -40,7 +40,7 @@ Expected outcome: Duck responds with a hello message.
 
 ### `bye`
 
-Say bye to Duck
+Say bye to Duck.
 
 Example: `bye`
 
