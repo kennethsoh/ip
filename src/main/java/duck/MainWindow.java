@@ -3,6 +3,8 @@ package duck;
 import java.io.IOException;
 
 import duck.exception.UnknownCommandException;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -10,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 /**
  * Controller for the main GUI.
  */
@@ -61,6 +64,14 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() throws UnknownCommandException, IOException {
         String input = userInput.getText();
         String response = duck.getResponse(input);
+
+        if (response.equalsIgnoreCase("Quack. Hope to see you again soon!")) {
+            dialogContainer.getChildren().addAll(
+                    DialogBox.getDukeDialog(response, duckImage));
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));
+            delay.setOnFinished(event -> Platform.exit());
+            delay.play();
+        }
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
                 DialogBox.getDukeDialog(response, duckImage)

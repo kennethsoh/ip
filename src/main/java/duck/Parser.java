@@ -66,6 +66,7 @@ public class Parser {
         case "delete" -> delete(input, list, ui);
         case "find" -> find(input, list, ui);
         case "snooze" -> snooze(input, list, ui);
+        case "quack" -> quack(ui);
         case "bye" -> bye(ui);
         default -> unknown(ui);
         };
@@ -277,6 +278,14 @@ public class Parser {
 
     }
 
+    /**
+     * Displays the quack quack message.
+     *
+     * @param ui The UI instance to display the message.
+     */
+    public String quack(Ui ui) {
+        return ui.showQuackMessage();
+    }
 
     /**
      * Displays the goodbye message.

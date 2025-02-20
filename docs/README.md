@@ -3,8 +3,12 @@
 Duck is a friendly chatbot that manages your todo lists, deadlines and events,
 and is easy to setup and use. 
 
-## Features
-There are 9 features in total.
+## Commands
+There are 11 commands in total.
+
+### Interact with Duck
+1. [Say hi: `quack`](#quack)
+2. [Say bye: `bye`](#bye)
 
 ### Create tasks
 1. [Tasks without deadlines: `todo`](#todo)
@@ -20,6 +24,34 @@ There are 9 features in total.
 6. [Snooze deadline: `snooze`](#snooze)
 
 ## Usage
+### `quack`
+
+Interact with Duck in his native language
+
+Example: `quack`
+
+Expected outcome: Duck responds with a hello message.
+
+```
+    __________________________________________________________
+    Quack quack!
+    __________________________________________________________
+```
+
+### `bye`
+
+Say bye to Duck
+
+Example: `bye`
+
+Expected outcome: Duck responds with a bye message, and the app closes after 3 seconds.
+
+```
+    __________________________________________________________
+    Quack. Hope to see you again soon!
+    __________________________________________________________
+```
+
 ### `todo`
 
 Creates a task with no time attribute.
@@ -114,7 +146,7 @@ Expected outcome: Removes the mark for the first task.
 
 ```
     __________________________________________________________
-    Nice! I've marked this task as not done yet:
+    oops! I've marked this task as not done yet:
     [T][ ] buy groceries
     __________________________________________________________
 ```

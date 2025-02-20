@@ -35,6 +35,13 @@ public class Ui {
     }
 
     /**
+     * Displays a quack quack message to the user.
+     */
+    public String showQuackMessage() {
+        return "Quack quack!";
+    }
+
+    /**
      * Displays the list of tasks.
      *
      * @param list The task list to be displayed.
@@ -64,7 +71,7 @@ public class Ui {
      * @param t The task that was unmarked.
      */
     public String unmark(Task t) {
-        return "Nice! I've marked this task as not done yet:\n"
+        return "oops! I've marked this task as not done yet:\n"
                 + t.toString() + "\n";
     }
 
@@ -115,7 +122,8 @@ public class Ui {
      *
      */
     public String showCommandErrorMessage() {
-        return "Enter a 'todo', 'deadline' or 'event' task, or 'mark' or 'unmark' action";
+        return "Enter a 'todo', 'deadline' or 'event' task, or 'delete', 'mark', 'unmark', "
+                + "'list', 'find' or 'snooze' action";
     }
 
     /**

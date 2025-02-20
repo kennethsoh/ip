@@ -5,8 +5,7 @@ import java.io.IOException;
 import duck.exception.UnknownCommandException;
 
 /**
- * The main class for the DUCK task manager application.
- * It initializes the required components and handles user interaction.
+ * Initializes the required components and handles user interaction.
  */
 public class Duck {
 
