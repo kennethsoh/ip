@@ -40,10 +40,9 @@ public class Parser {
      * @param index index of stringArray[]
      * @return
      */
-    private static String getString(String[] stringArray, int index) {
+    private String getString(String[] stringArray, int index) {
         return stringArray.length > index ? stringArray[index].trim() : "";
     }
-
 
     /**
      * Parses and executes a command based on user input.
@@ -91,16 +90,16 @@ public class Parser {
      */
     public String mark(String userInput, TaskList list, Ui ui) {
         try {
-            int number = Integer.parseInt(parseInput(userInput, " ")[1]);
-            if (number <= 0 || number > list.size()) {
+            long tempNumber = Long.parseLong(parseInput(userInput, " ")[1]);
+            if (tempNumber < 1 || tempNumber > list.size()) {
                 throw new IndexOutOfBoundsException("Task number out of range.");
             }
+            int number = (int) tempNumber;
             Task task = list.get(number - 1);
             task.mark();
-
             return ui.mark(task);
-        } catch (IndexOutOfBoundsException e) {
-            return ui.showErrorMessage(e.getMessage());
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return ui.showErrorMessage("Invalid task number! Enter a value between 1 and " + list.size());
         }
     }
 
@@ -114,17 +113,16 @@ public class Parser {
      */
     public String unmark(String userInput, TaskList list, Ui ui) {
         try {
-            int number = Integer.parseInt(parseInput(userInput, " ")[1]);
-            if (number <= 0 || number > list.size()) {
+            long tempNumber = Long.parseLong(parseInput(userInput, " ")[1]);
+            if (tempNumber < 1 || tempNumber > list.size()) {
                 throw new IndexOutOfBoundsException("Task number out of range.");
             }
+            int number = (int) tempNumber;
             Task task = list.get(number - 1);
             task.unmark();
-
             return ui.unmark(task);
-
-        } catch (IndexOutOfBoundsException e) {
-            return ui.showErrorMessage(e.getMessage());
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return ui.showErrorMessage("Invalid task number! Enter a value between 1 and " + list.size());
         }
     }
 
@@ -219,14 +217,15 @@ public class Parser {
      */
     public String delete(String userInput, TaskList list, Ui ui) {
         try {
-            int number = Integer.parseInt(parseInput(userInput, " ")[1]);
-            if (number <= 0 || number > list.size()) {
+            long tempNumber = Long.parseLong(parseInput(userInput, " ")[1]);
+            if (tempNumber < 1 || tempNumber > list.size()) {
                 throw new IndexOutOfBoundsException("Task number out of range.");
             }
+            int number = (int) tempNumber;
             Task task = list.remove(number - 1);
             return ui.removeTaskMessage(task, list);
-        } catch (IndexOutOfBoundsException e) {
-            return ui.showErrorMessage(e.getMessage());
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return ui.showErrorMessage("Invalid task number! Enter a value between 1 and " + list.size());
         } catch (Exception e) {
             return ui.showErrorMessage("Invalid Input, Try again!");
         }
@@ -261,10 +260,11 @@ public class Parser {
      */
     public String snooze(String userInput, TaskList list, Ui ui) {
         try {
-            int number = Integer.parseInt(parseInput(userInput, " ")[1]);
-            if (number <= 0 || number > list.size()) {
+            long tempNumber = Long.parseLong(parseInput(userInput, " ")[1]);
+            if (tempNumber < 1 || tempNumber > list.size()) {
                 throw new IndexOutOfBoundsException("Task number out of range.");
             }
+            int number = (int) tempNumber;
             Task task = list.get(number - 1);
             if (!(task instanceof Deadline)) {
                 return ui.showErrorMessage("Snooze only applicable to deadline");
@@ -272,8 +272,8 @@ public class Parser {
             task.snooze();
             return ui.snoozeMessage(task);
 
-        } catch (IndexOutOfBoundsException e) {
-            return ui.showErrorMessage(e.getMessage());
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            return ui.showErrorMessage("Invalid task number! Enter a value between 1 and " + list.size());
         }
 
     }
